@@ -132,9 +132,5 @@ public class ConfigFrame1 extends JFrame {
 		comboBoxIntCount.setBounds(185, 47, 66, 27);
 		contentPane.add(comboBoxIntCount);
 		
-		JCheckBox chckbxPortRange = new JCheckBox("Port Range");
-		chckbxPortRange.setBounds(15, 94, 128, 23);
-		contentPane.add(chckbxPortRange);
-		
 	}
 }
