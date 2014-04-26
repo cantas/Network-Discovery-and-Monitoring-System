@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 
 public class ConfigFrame1 extends JFrame {
 
@@ -130,6 +131,10 @@ public class ConfigFrame1 extends JFrame {
 		comboBoxIntCount = new JComboBox();
 		comboBoxIntCount.setBounds(185, 47, 66, 27);
 		contentPane.add(comboBoxIntCount);
+		
+		JCheckBox chckbxPortRange = new JCheckBox("Port Range");
+		chckbxPortRange.setBounds(15, 94, 128, 23);
+		contentPane.add(chckbxPortRange);
 		
 	}
 }
