@@ -132,6 +132,8 @@ public class frame1 extends JFrame {
 	JPopupMenu popup;
 	
 	ArrayList<String> vlanIDs = new ArrayList<String>();
+	private JTextField snmp_com;
+	String target;
 
 
 	/**
@@ -187,18 +189,6 @@ public class frame1 extends JFrame {
 		lblNewLabel.setBounds(10, 57, 86, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblScanOption = new JLabel("Scan Option");
-		lblScanOption.setBounds(302, 32, 86, 14);
-		contentPane.add(lblScanOption);
-		
-		
-		
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(375, 32, 103, 21);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Intance Scan", "Quick Scan", "Port Scan", "Ping Scan"}));
-		contentPane.add(comboBox);
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(20, 82, 181, 501);
 		contentPane.add(panel);
@@ -219,12 +209,14 @@ public class frame1 extends JFrame {
 		jlist.setBounds(0, 21, 161, 439);
 		panel.add(jlist);
 		
+		
+		
 		jlist.addMouseListener(new java.awt.event.MouseAdapter(){
 		 public void mouseClicked(java.awt.event.MouseEvent mouseEvent){
            if (!jlist.getCellBounds(jlist.getSelectedIndex(), jlist.getSelectedIndex()).contains(mouseEvent.getPoint())){
                 	jlist.removeSelectionInterval(jlist.getSelectedIndex(), jlist.getSelectedIndex());
                 }
-                	tabbedPane.setSelectedIndex(2);
+                	tabbedPane.setSelectedIndex(0);
 				
 				
 				/**
@@ -249,11 +241,12 @@ public class frame1 extends JFrame {
 				{
 					textArea_2.setText(null);
 					try {
+						target =snmp_com.getText();
 						//SNMPAgent as = new SNMPAgent("192.168.1.10");1.3.6.1.2.1.47.1.1.1.1.13-1.0.8802.1.1.2.1.5.4795.1.2.7.0
-						detailsOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0");//
+						detailsOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0",target);//
 						if(detailsOid.startsWith("no"))
 						{
-							detailsOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.47.1.1.1.1.13.1");
+							detailsOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.47.1.1.1.1.13.1",target);
 						
 							if(detailsOid.startsWith("no"))
 							{
@@ -269,21 +262,21 @@ public class frame1 extends JFrame {
 						
 						if(!detailsOid.equals("SNMP does not supported"))
 						{
-						String hostNameOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.1.5.0");
+						String hostNameOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.1.5.0",target);
 						
 					//	String asd3 = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.9.13.1.4.1.2.1004");
 						
 					//	String asd4 = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.9.13.1.5.1.2.1003");
 						
-						String upTimeOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.1.3.0");
+						String upTimeOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.2.1.1.3.0",target);
 						
-						String asd6 = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.9.23.1.2.1.1.8.10001.1");
+						String asd6 = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.9.23.1.2.1.1.8.10001.1",target);
 						
 						//String model = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161",".1.3.6.1.4.1.9.9.23.1.2.1.1.8.1.4");
 						
 						//String firmware = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.9.23.1.2.1.1.5.10001.1");
 						
-						String cpuin5scOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.2.1.56.0"); //cpu'ya cevrildi.
+						String cpuin5scOid = SNMPManager.main("udp:"+jlist.getSelectedValue()+"/161","1.3.6.1.4.1.9.2.1.56.0",target); //cpu'ya cevrildi.
 						
 					   // String testWalk = SNMPWalk.main(jlist.getSelectedValue().toString());
 						
@@ -470,10 +463,10 @@ public class frame1 extends JFrame {
 								}
 								if(vlanOidFlag)
 								{
-								vlanIDs = f.getVlans(jlist.getSelectedValue().toString(),getVlanOid);
+								vlanIDs = f.getVlans(jlist.getSelectedValue().toString(),getVlanOid,target);
 								for(int i=0;i<vlanIDs.size();i++)
 									cf2.comboBoxVlans.addItem(vlanIDs.get(i));
-								int intCount = f.getInterfaceCount(getSelectedIp);
+								int intCount = f.getInterfaceCount(getSelectedIp,target);
 								for(int i=0;i<intCount-2;i++)
 									cf2.comboBoxIntCount.addItem(i+1);
 								
@@ -532,18 +525,18 @@ public class frame1 extends JFrame {
 					String asd;//Hostname
 					try {
 						
-						asd = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.1.0");
+						asd = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.1.0",target);
 						if(!asd.equals("SNMP does not supported"))
 						{
-						String asd2 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.5.0");//Details
+						String asd2 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.5.0",target);//Details
 						
 						
-						String asd5 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.3.0");//Uptime
+						String asd5 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.1.3.0",target);//Uptime
 						
-						String asd6 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.16.19.6.0");//Flash
+						String asd6 = SNMPManager.main("udp:"+s+"/161","1.3.6.1.2.1.16.19.6.0",target);//Flash
 						
 						
-						String interfaces = SNMPManager.main("udp:"+s+"/161","1.3.6.1.4.1.9.2.1.56.0"); //cpu'ya cevrildi.
+						String interfaces = SNMPManager.main("udp:"+s+"/161","1.3.6.1.4.1.9.2.1.56.0",target); //cpu'ya cevrildi.
 						
 					
 					
@@ -630,21 +623,6 @@ public class frame1 extends JFrame {
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(154, 11, 481, 412);
 		panel_1.add(tabbedPane);
-		JPanel output = new JPanel();
-		tabbedPane.add("Output",output);
-		output.setLayout(null);
-		
-		final JTextArea textArea = new JTextArea();
-		textArea.setBounds(0, 0, 466, 373);
-		output.add(textArea);
-		
-		JPanel ports = new JPanel();
-		tabbedPane.add("Ports/Hosts",ports);
-		ports.setLayout(null);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(0, 0, 436, 301);
-		ports.add(textArea_1);
 		
 		final JPanel hostdeta = new JPanel();
 		tabbedPane.add("Host Details",hostdeta);
@@ -666,7 +644,7 @@ public class frame1 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//f.lldprun();
-			DiscoveryOperation.main();
+			DiscoveryOperation.main( target);
 			
 			try {
 					//DrawTopology.main();
@@ -875,6 +853,15 @@ public class frame1 extends JFrame {
 	                return m.matches();
 	            }
 	        });
+		 
+		 JLabel lblSnmpCommunityName = new JLabel("SNMP Community Name");
+		 lblSnmpCommunityName.setBounds(309, 29, 126, 14);
+		 contentPane.add(lblSnmpCommunityName);
+		 
+		 snmp_com = new JTextField();
+		 snmp_com.setBounds(319, 51, 86, 20);
+		 contentPane.add(snmp_com);
+		 snmp_com.setColumns(10);
 		
 		//*****TextFieldCheckJustify****////
 		

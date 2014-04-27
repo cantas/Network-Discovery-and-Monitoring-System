@@ -95,9 +95,9 @@ public class functions {
 		   JOptionPane.showMessageDialog(null, s);
 		}
 	
-	public static final ArrayList<String> getVlans(String input, String walkOid) throws IOException{
+	public static final ArrayList<String> getVlans(String input, String walkOid,String target) throws IOException{
 		frame1 fra1 = new frame1();
-
+		
 		ArrayList<String> vlanIDs = new ArrayList<String>();
 
 		//String walkOid = "1.3.6.1.4.1.9.5.1.9.3.1.3";
@@ -107,7 +107,7 @@ public class functions {
 	
 		
 		
-			walkOutput = snmpWalk.main(input, walkOid);
+			walkOutput = snmpWalk.main(input, walkOid,target);
 	
 		
 	
@@ -131,7 +131,7 @@ public class functions {
 	
 		return vlanIDs;
 	}
-	public int getInterfaceCount(String ip)
+	public int getInterfaceCount(String ip,String target)
 	{
 		String walkOid = "1.3.6.1.4.1.9.9.68.1.2.2.1";
 		String walkOutput=null;
@@ -139,7 +139,7 @@ public class functions {
 		String[] equalSplitter = null;
 		int intCount = 0;
 		
-		walkOutput = snmpWalk.main(ip, walkOid);
+		walkOutput = snmpWalk.main(ip, walkOid,target);
 		walkLineOut= walkOutput.split("\n");
 		
 		int ind =0;

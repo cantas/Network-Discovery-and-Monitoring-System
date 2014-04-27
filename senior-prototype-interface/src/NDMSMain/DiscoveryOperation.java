@@ -7,13 +7,13 @@ import TopologyHandler.WriteXMLFile;
 
 public class DiscoveryOperation {
 
-	public static void main() {
+	public static void main(String target) {
 		// TODO Auto-generated method stub
 		LldpDiscovery ldp = new LldpDiscovery();
 		CdpDiscovery cdp = new CdpDiscovery();
 		 
-		cdp.main();
-		ldp.main();
+		cdp.main(target);
+		ldp.main(target);
 		int count=0;
 		
 		for(int i=0 ; i<cdp.cdpTopologyNodeId.size();i++)

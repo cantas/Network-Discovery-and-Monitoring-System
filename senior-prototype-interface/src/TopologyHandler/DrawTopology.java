@@ -15,8 +15,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import com.sun.j3d.utils.applet.MainFrame;
-
 import NDMSMain.frame1;
 import prefuse.Constants;
 import prefuse.Display;
@@ -243,7 +241,7 @@ LabelRenderer nodeRenderer = new LabelRenderer("name", "type");
     // create a new window to hold the visualization
     JFrame frame = new JFrame("Network Discovery and Monitoring");
     // ensure application exits when window is closed
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     frame.setBounds(0,0,screenSize.width, screenSize.height);
     

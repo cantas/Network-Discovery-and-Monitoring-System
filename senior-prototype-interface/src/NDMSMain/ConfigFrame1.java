@@ -13,8 +13,6 @@ import javax.swing.JButton;
 
 import SNMPHandler.SNMPSet;
 
-import com.sun.tools.javac.code.Attribute.Array;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -40,7 +38,7 @@ public class ConfigFrame1 extends JFrame {
 	public ConfigFrame1(frame1 mf1) {
 		mainFrame1 = mf1;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -73,7 +71,7 @@ public class ConfigFrame1 extends JFrame {
 				String deviceIp = textField_config_ip.getText().trim().toString();
 				int intNumber = comboBoxIntCount.getSelectedIndex()+1;
 				String intNumberOid=null;
-				
+				String target=mainFrame1.target;
 				
 				if(intNumber<10)
 				{
@@ -87,11 +85,11 @@ public class ConfigFrame1 extends JFrame {
 				if(interfaceType==0)
 				{
 					
-					snmpSet.main(deviceIp, "public", "1.3.6.1.4.1.9.9.68.1.2.2.1.2.100"+intNumberOid, vlanId);
+					snmpSet.main(deviceIp, target, "1.3.6.1.4.1.9.9.68.1.2.2.1.2.100"+intNumberOid, vlanId);
 				}
 				else if(interfaceType==1)
 				{
-					snmpSet.main(deviceIp, "public", "1.3.6.1.4.1.9.9.68.1.2.2.1.2.101"+intNumberOid, vlanId);
+					snmpSet.main(deviceIp, target, "1.3.6.1.4.1.9.9.68.1.2.2.1.2.101"+intNumberOid, vlanId);
 
 				}
 				else

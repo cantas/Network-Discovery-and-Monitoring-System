@@ -15,6 +15,7 @@ public class CdpDiscovery {
 	public static String cdpSnmpCheck = null; //Host Name
 	public static String cdpDevicePid = null;  //Product Id
 	public static String cdpTemp= null;  //Product Id
+	
 
 	
 	public static ArrayList<String> cdpTopologyNodeId = new ArrayList<String>();
@@ -24,7 +25,7 @@ public class CdpDiscovery {
 	public static ArrayList<String> cdpNeigInt = new ArrayList<String>();
 	public static ArrayList<String> cdpDeviceModel = new ArrayList<String>();
 	
-	public static void main() {
+	public static void main(String target) {
 		// TODO Auto-generated method stub
 		
 		frame1 out = new frame1();
@@ -43,12 +44,12 @@ public class CdpDiscovery {
 			
 			try {
 			//System Name   1.3.6.1.2.1.47.1.1.1.1.13.1
-			cdpDevicePid= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0");
+			cdpDevicePid= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0",target);
 			System.out.println("11111 DevicePidDDDDDDDDDDDDDDDDDDDDDDDDDDD: "+ cdpDevicePid);
 		
 			if(cdpDevicePid.startsWith("no"))
 			{
-				cdpDevicePid= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.2.1.47.1.1.1.1.13.1");
+				cdpDevicePid= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.2.1.47.1.1.1.1.13.1",target);
 				System.out.println("22222 DevicePidDDDDDDDDDDDDDDDDDDDDDDDDDDD: "+ cdpDevicePid);
 
 				if(cdpDevicePid.startsWith("no"))
@@ -69,7 +70,7 @@ public class CdpDiscovery {
 		
 			if(cdpDevicePid.trim().startsWith("WS") || cdpDevicePid.trim().equalsIgnoreCase("unkowndevice"))
 			{
-				cdpSnmpCheck = SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.4.1.9.9.23.1.3.4.0");
+				cdpSnmpCheck = SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.4.1.9.9.23.1.3.4.0",target);
 
 				// To determine node count and Id s
 				cdpTopologyNodeId.add(cdpSnmpCheck);
@@ -81,7 +82,7 @@ public class CdpDiscovery {
 				System.out.println("DevicePidDDDDDDDDDDDDDDDDDDDDDDDDDDD: "+ cdpDevicePid);
 			
 		
-			cdpTestWalk =  SNMPWalk.main(out.ipler.get(i).toString(),CDP_OID);
+			cdpTestWalk =  SNMPWalk.main(out.ipler.get(i).toString(),CDP_OID,target);
 			
 			
 			walkLineOut= cdpTestWalk.split("\n");
