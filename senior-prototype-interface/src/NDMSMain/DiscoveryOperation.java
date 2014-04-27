@@ -2,10 +2,11 @@ package NDMSMain;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.TimerTask;
 
 import TopologyHandler.WriteXMLFile;
 
-public class DiscoveryOperation {
+public abstract class DiscoveryOperation extends TimerTask{
 
 	public static void main(String target) {
 		// TODO Auto-generated method stub
