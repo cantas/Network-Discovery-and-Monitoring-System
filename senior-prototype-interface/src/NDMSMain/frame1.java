@@ -92,6 +92,7 @@ public class frame1 extends JFrame {
 	final JList jlist ;
 	
 	ConfigFrame1 cf2 = new ConfigFrame1(this);
+	DynamicLineAndTimeSeriesChart dynmicChart = new DynamicLineAndTimeSeriesChart(null);
 	
 	
 	String detailsOid ;
@@ -427,10 +428,10 @@ public class frame1 extends JFrame {
 					popup = new JPopupMenu();
 					
 					JMenuItem configureMenu = new JMenuItem("Configure");
-					JMenuItem deleteMenu = new JMenuItem("Delete");
+					JMenuItem monitorMenu = new JMenuItem("Delete");
 				
 					popup.add(configureMenu);
-					popup.add(deleteMenu);
+					popup.add(monitorMenu);
 			
 				
 				
@@ -482,11 +483,12 @@ public class frame1 extends JFrame {
 						}
 					});
 
-					deleteMenu.addActionListener(new ActionListener() {
+					monitorMenu.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							System.out.println(((JMenuItem) e.getSource()).getText()
-									.toString());
+							 getSelectedIp = jlist.getSelectedValue().toString();
+							 dynmicChart.lblselectedIp.setText(getSelectedIp);
+							
 						}
 					});
 

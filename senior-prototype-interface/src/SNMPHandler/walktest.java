@@ -28,9 +28,9 @@ public class walktest
   public static void main(String[] args)
   {
 	  String output ="";
-    Address targetAddress = new UdpAddress("192.168.1.20"+"/161");
+    Address targetAddress = new UdpAddress("192.168.1.35"+"/161");
     
-    OID targetOID         = new OID("1.3.6.1.2.1.17.4.3");
+    OID targetOID         = new OID("1.3.6.1.2.1.6.13.1.1");
     
     //1.3.6.1.2.1.3.1.1.2-----HP getVlan-> 1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.1==1.3.6.1.4.1.9.9.68.1.2.2.1
     //1.3.6.1.2.1.17.1.4.1.2==1.3.6.1.4.1.9.9.46.1.3.1.1.2

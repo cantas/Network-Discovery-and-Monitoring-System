@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import TopologyHandler.WriteXMLFile;
 
-public abstract class DiscoveryOperation extends TimerTask{
+public class DiscoveryOperation{
 
 	public static void main(String target) {
 		// TODO Auto-generated method stub
