@@ -99,6 +99,7 @@ public class frame1 extends JFrame {
 	 String ip="";
 	 String lastIp=""; 
 	 public static String getSelectedIp = null;
+	 public static boolean flagTime=true;
 
 	frame1 fr;
 	SQLiteJDBC sql ;
@@ -644,7 +645,8 @@ public class frame1 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//f.lldprun();
-			DiscoveryOperation.main( target);
+		DiscoveryOperation dis = new DiscoveryOperation();
+		dis.run();
 			
 			try {
 					//DrawTopology.main();

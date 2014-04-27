@@ -10,11 +10,16 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import NDMSMain.CdpDiscovery;
+import NDMSMain.DiscoveryOperation;
+import NDMSMain.LldpDiscovery;
 import NDMSMain.frame1;
 import prefuse.Constants;
 import prefuse.Display;
@@ -51,8 +56,30 @@ public class DrawTopology {
     	DECORATOR_SCHEMA.setDefault(VisualItem.FONT, FontLib.getFont("Tahoma",16));
     }
 public static void main() throws Exception {
-	
+	frame1 fra = new frame1();
     Graph graph = null;
+    Timer times = new Timer();
+    Timer times1 = new Timer();
+    DiscoveryOperation  dis = new DiscoveryOperation();
+    LldpDiscovery ldp = new LldpDiscovery();
+	CdpDiscovery cdp = new CdpDiscovery();
+	ldp.lldpHostInt.clear();
+	ldp.deviceModel.clear();
+	ldp.lldpHostName.clear();
+	ldp.lldpNeigInt.clear();
+	ldp.lldpNeigMac.clear();
+	ldp.lldpNeigName.clear();
+	ldp.topologyNodeId.clear();
+	
+	cdp.cdpHostInt.clear();
+	cdp.cdpDeviceModel.clear();
+	cdp.cdpHostName.clear();
+	cdp.cdpNeigInt.clear();
+	cdp.cdpNeigName.clear();
+	cdp.cdpTopologyNodeId.clear();
+	
+   
+    
     try {
 
         graph = new GraphMLReader().readGraph("topology.xml");
@@ -60,8 +87,9 @@ public static void main() throws Exception {
         e.printStackTrace();
         System.err.println("Error loading graph. Exiting...");
         System.exit(1);
+        
     }
-
+    times.schedule(dis,20000);
 ImageFactory imageFactory = new ImageFactory(100,100);
 
 
@@ -216,7 +244,7 @@ LabelRenderer nodeRenderer = new LabelRenderer("name", "type");
   layout.add(balloonlayout); 
 
 
-    Display d = new Display(vis);
+    final Display d = new Display(vis);
  
     vis.putAction("layout", layout);
 
@@ -239,15 +267,38 @@ LabelRenderer nodeRenderer = new LabelRenderer("name", "type");
    
 
     // create a new window to hold the visualization
-    JFrame frame = new JFrame("Network Discovery and Monitoring");
+ 
+    JFrame frame = new JFrame("Network Discovery and Monitoring");;
+  
     // ensure application exits when window is closed
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     frame.setBounds(0,0,screenSize.width, screenSize.height);
-    
-    frame.add(d);
-        // layout components in window
     frame.setVisible(true); // show the window
+    frame.add(d);
+    
+    
+    
+    
+//    Thread th = new Thread(new Runnable() {
+//		
+//		@Override
+//		public void run() {
+//			// TODO Auto-generated method stub
+//			 frame.add(d);
+//			 System.out.println("*************************\n THREAD\n*************************");
+//			 frame.pack();
+//		}
+//	});
+//    th.start();
+//    th.sleep(10000);
+        // layout components in window
+   
+    
+    
+   
+    //times1.schedule(frame.add(d), 10000);
+    
  // start up the animated layout
     System.out.println("Draw ustu");
     vis.run("draw");
