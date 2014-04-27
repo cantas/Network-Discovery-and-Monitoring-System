@@ -33,6 +33,8 @@ import javax.swing.JLabel;
 public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements ActionListener {
 	static int subsitution;
 
+	public JLabel lblselectedIp;
+	
     /** The time series data. */
     private TimeSeries series;
 
@@ -72,8 +74,8 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
         //Sets the size of whole window (JPanel)
         chartPanel.setPreferredSize(new java.awt.Dimension(800, 500));
         
-        JLabel lblK = new JLabel("k");
-        chartPanel.add(lblK);
+        lblselectedIp = new JLabel("k");
+        chartPanel.add(lblselectedIp);
        
         //Puts the whole content on a Frame
         setContentPane(content);
@@ -91,7 +93,7 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
      */
     private JFreeChart createChart(final XYDataset dataset) {
         final JFreeChart result = ChartFactory.createTimeSeriesChart(
-            "Monitoring Table of",
+            "Monitoring Table for"+lblselectedIp.getText(),
             "Time",
             "Mb",
             dataset,
@@ -178,7 +180,7 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
 		int subsitution2=0;
 		int swap=0;
 		
-		String ip = "192.168.1.35";
+		String ip ="192.168.1.35";  //lblselectedIp.getText().trim();
 
 		String outputIN = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.6",communityName);
 		String outputOUT = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.10",communityName);
@@ -218,7 +220,7 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
      *
      * @param args  ignored.
      */
-    public static void main(final String[] args) {
+    public static void main(String args[]) {
 
         final DynamicLineAndTimeSeriesChart demo = new DynamicLineAndTimeSeriesChart("Dynamic Line And TimeSeries Chart");
         demo.pack();
