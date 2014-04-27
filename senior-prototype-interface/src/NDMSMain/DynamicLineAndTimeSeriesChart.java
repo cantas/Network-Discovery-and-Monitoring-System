@@ -23,7 +23,9 @@ import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import SNMPHandler.SNMPWalk;
+
 import javax.swing.JLabel;
+
 
 /**
  * An example to show how we can create a dynamic chart.
@@ -165,6 +167,8 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
     	return sum;
 
     }
+    frame1 fr= new frame1();
+    String communityName= fr.target;
     static int index =0;
 	static ArrayList sumOfInt = new ArrayList();
     public void actionPerformed(final ActionEvent e) {
@@ -176,8 +180,8 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
 		
 		String ip = "192.168.1.35";
 
-		String outputIN = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.6");
-		String outputOUT = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.10");
+		String outputIN = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.6",communityName);
+		String outputOUT = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.10",communityName);
 		 
 		
 		 sumOfInt.add(inputParser(outputIN));

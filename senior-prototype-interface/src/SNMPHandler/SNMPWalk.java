@@ -25,7 +25,7 @@ public class SNMPWalk
   // EX:
   //   java SNMPWalk 192.168.76.15/161 1.3.6.1.4.1.517
   //
-  public static String main(String ip,String walkOid)
+  public static String main(String ip,String walkOid, String comunityName)
   {
 	  String output ="";
     Address targetAddress = new UdpAddress(ip+"/161");

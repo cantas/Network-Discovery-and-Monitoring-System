@@ -23,7 +23,7 @@ public class LldpDiscovery {
 	public static ArrayList<String> deviceModel = new ArrayList<String>();
 
 
-	public static void main() {
+	public static void main(String target) {
 		
 		System.out.println("LLDP GELDIIIII");
 
@@ -37,19 +37,19 @@ public class LldpDiscovery {
 		{
 			try {
 				
-				devicePid = SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0");
+				devicePid = SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.0.8802.1.1.2.1.5.4795.1.2.7.0",target);
 			
 			if(!devicePid.startsWith("no"))
 			{
 				// To determine node count and Id s
 			
-				snmpCheck= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.2.1.1.5.0");
+				snmpCheck= SNMPManager.main("udp:"+out.ipler.get(i).toString()+"/161","1.3.6.1.2.1.1.5.0",target);
 				deviceModel.add(devicePid);
 				topologyNodeId.add(snmpCheck);
 				
 			
 		
-			testWalk =  t1.main(out.ipler.get(i).toString(),LLDP_OID);
+			testWalk =  t1.main(out.ipler.get(i).toString(),LLDP_OID,target);
 			
 			
 			satir= testWalk.split("\n");
