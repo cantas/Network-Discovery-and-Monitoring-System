@@ -32,12 +32,16 @@ import TopologyHandler.WriteXMLFile;
 
 
 public class functions {
+	/*
+	 * This class will store and implement some methods which are used
+	 * for the entire project
+	 */
 	
 	
 	public static int hostCount = 0;
 	public static String snmpCheck = null;
 	public static String devicePid = null;  //Product Id
-	public static String LLDP_OID = "1.0.8802.1.1.2.1.4.1.1";
+	public static String LLDP_OID = "1.0.8802.1.1.2.1.4.1.1"; // LLDP protochol MIB-OID
 	public static ArrayList<String> vlanIDs = new ArrayList<String>();
 	static String detailsOid = null;
 
@@ -131,6 +135,13 @@ public class functions {
 	
 		return vlanIDs;
 	}
+	/**
+	 * takes an ip address and returns the port
+	 * count of device
+	 * @param ip
+	 * @param target
+	 * @return intcount
+	 */
 	public int getInterfaceCount(String ip,String target)
 	{
 		String walkOid = "1.3.6.1.4.1.9.9.68.1.2.2.1";
@@ -157,7 +168,12 @@ public class functions {
 	}
 	
 	
-	
+	/**
+	 * Takes ip as a string and converts it
+	 * finds next ip address of it and returns as ip format
+	 * @param input
+	 * @return 
+	 */
 	public static final String nextIpAddress(final String input) {
 	    final String[] tokens = input.split("\\.");
 	    if (tokens.length != 4)
@@ -179,6 +195,13 @@ public class functions {
 	    .append(tokens[3])
 	    .toString();
 	}
+	/**
+	 * gets ip addres and last ip address
+	 * and it scans entire given ip address block
+	 * @param ip
+	 * @param lastIp
+	 * @return result
+	 */
 	public static final String ScanOpeation(String ip, String lastIp)
 	{
 		Process p = null;
@@ -249,7 +272,11 @@ public class functions {
 	}
 	
 
-	
+	/**
+	 * output parser method
+	 * @param input
+	 * @return isSent
+	 */
 	
 	
 	public static final String parseOutput(final String input) {
@@ -263,6 +290,11 @@ public class functions {
 	
 	}
 	
+	/**
+	 * output parser method
+	 * @param input
+	 * @return isSent
+	 */
 	public static final String parseOutput2(final String input) {
 		
 		

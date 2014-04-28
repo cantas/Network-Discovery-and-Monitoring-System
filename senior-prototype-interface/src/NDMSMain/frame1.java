@@ -87,19 +87,24 @@ import javax.swing.JScrollPane;
 
 
 public class frame1 extends JFrame {
+	
+	/*
+	 * Main frame of NDMS There ip range will be taken, scan, load, save and
+	 * draw topology operations will be started from here
+	 */
 	public static ArrayList<String> ipler = new ArrayList<String>();
-	final DefaultListModel model ;
-	final JList jlist ;
+	final DefaultListModel model ; // model for the discovered devices ip
+	final JList jlist ; // list for disvored devices ip 
 	
 	ConfigFrame1 cf2 = new ConfigFrame1(this);
 	DynamicLineAndTimeSeriesChart dynmicChart = new DynamicLineAndTimeSeriesChart(null);
 	
 	
-	String detailsOid ;
+	String detailsOid ; // oid number of details
 	
-	 String ip="";
-	 String lastIp=""; 
-	 public static String getSelectedIp = null;
+	 String ip="";  // ip address 
+	 String lastIp="";  // last ip addres on range
+	 public static String getSelectedIp = null; 
 	 public static boolean flagTime=true;
 
 	frame1 fr;
@@ -111,7 +116,7 @@ public class frame1 extends JFrame {
 	  boolean flag_scan=false;
 	  boolean textareaFlag=false;
 	
-	  SQLiteJDBC sq = new SQLiteJDBC();
+	  SQLiteJDBC sq = new SQLiteJDBC(); // SQlite connection
 	  List iplist;
 	
 	
@@ -212,7 +217,10 @@ public class frame1 extends JFrame {
 		panel.add(jlist);
 		
 		
-		
+		/*
+		 * Mouse lisstener for selected ip address in Jlist and selected
+		 * ip address' device information will be shown in Hosts details pane
+		 */
 		jlist.addMouseListener(new java.awt.event.MouseAdapter(){
 		 public void mouseClicked(java.awt.event.MouseEvent mouseEvent){
            if (!jlist.getCellBounds(jlist.getSelectedIndex(), jlist.getSelectedIndex()).contains(mouseEvent.getPoint())){
@@ -311,6 +319,10 @@ public class frame1 extends JFrame {
 							System.out.println(e); 
 						}
 					}
+						/*
+						 * if selected device doesn't support SNMP protocol 
+						 * then device canonical name will be shown in host details pane
+						 */
 						else
 						{
 							

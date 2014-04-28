@@ -21,14 +21,18 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 
 public class ConfigFrame1 extends JFrame {
+	/*
+	 * This is the configuration panel for discovered device
+	 * vlan configuration will be configured
+	 */
 
-	frame1 mainFrame1;
-	functions func = new functions();
+	frame1 mainFrame1; //main frame object
+	functions func = new functions(); // connection to the functions
 	
-	SNMPSet snmpSet = new SNMPSet();
+	SNMPSet snmpSet = new SNMPSet(); // to call SNMP SET operation
 	private JPanel contentPane;
-	JComboBox comboBoxVlans;
-	JComboBox comboBoxIntCount;
+	JComboBox comboBoxVlans; //selected device vlans will be added there
+	JComboBox comboBoxIntCount;//selected device port numbers will be added there
 	public JTextField textField_config_ip;
 	
 

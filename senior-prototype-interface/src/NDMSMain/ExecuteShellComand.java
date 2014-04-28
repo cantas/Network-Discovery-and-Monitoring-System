@@ -5,6 +5,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
  
 public class ExecuteShellComand {
+	
+	/*
+	 * Executing shell commands on a host machine to discover device
+	 * 
+	 */
  
 	public static String main(String ip) {
  
@@ -30,6 +35,11 @@ public class ExecuteShellComand {
 		return output;
  
 	}
+	/**
+	 * Takes command and applies it in host machine
+	 * @param command
+	 * @return
+	 */
  
 	private String executeCommand(String command) {
  
@@ -54,6 +64,12 @@ public class ExecuteShellComand {
 		return output.toString();
  
 	}
+	
+	/**
+	 * Output parser for UNIX host machine
+	 * @param output
+	 * @return
+	 */
 	private String linuxParse(String output) {
 	
 		String[] secondLine = output.split("\n");
