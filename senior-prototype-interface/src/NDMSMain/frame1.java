@@ -92,7 +92,7 @@ public class frame1 extends JFrame {
 	final JList jlist ;
 	
 	ConfigFrame1 cf2 = new ConfigFrame1(this);
-	DynamicLineAndTimeSeriesChart dynmicChart = new DynamicLineAndTimeSeriesChart(null);
+	PacketRateMonitoring prm;
 	
 	
 	String detailsOid ;
@@ -429,7 +429,7 @@ public class frame1 extends JFrame {
 					popup = new JPopupMenu();
 					
 					JMenuItem configureMenu = new JMenuItem("Configure");
-					JMenuItem monitorMenu = new JMenuItem("Delete");
+					JMenuItem monitorMenu = new JMenuItem("Monitor");
 				
 					popup.add(configureMenu);
 					popup.add(monitorMenu);
@@ -437,13 +437,13 @@ public class frame1 extends JFrame {
 				
 				
 				popup.show(e.getComponent(), e.getX(), e.getY());
-					
+				 getSelectedIp = jlist.getSelectedValue().toString();
 					
 					configureMenu.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							String getVlanOid="1.3.6.1.4.1.9.5.1.9.3.1.3";
-							 getSelectedIp = jlist.getSelectedValue().toString();
+							// getSelectedIp = jlist.getSelectedValue().toString();
 							 
 							Boolean vlanOidFlag = false;
 							System.out.println("DetailsOid:"+detailsOid);
@@ -487,17 +487,13 @@ public class frame1 extends JFrame {
 					monitorMenu.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							 getSelectedIp = jlist.getSelectedValue().toString();
-							 dynmicChart.lblselectedIp.setText(getSelectedIp);
-							
+							System.out.println("sss:"+getSelectedIp);
+							// getSelectedIp = jlist.getSelectedValue().toString();
+							// prm.lblselectedIp.setText(getSelectedIp);
+							prm.main();
 						}
 					});
-
-		
-
-					
-
-				}
+}
 
 			
            

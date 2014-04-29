@@ -6,11 +6,8 @@ import java.util.TimerTask;
 
 import TopologyHandler.WriteXMLFile;
 
-<<<<<<< HEAD
 public  class DiscoveryOperation extends TimerTask{
-=======
-public class DiscoveryOperation{
->>>>>>> a5e507ab11ceb776f9e33d4e61a6e42acff035ce
+
 
 	
 		@Override

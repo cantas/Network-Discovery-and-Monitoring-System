@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 /**
  * An example to show how we can create a dynamic chart.
 */
-public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements ActionListener {
+public class PacketRateMonitoring extends ApplicationFrame implements ActionListener {
 	static int subsitution;
 
 	public JLabel lblselectedIp;
@@ -49,7 +49,7 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
      *
      * @param title  the frame title.
      */
-    public DynamicLineAndTimeSeriesChart(final String title) {
+    public PacketRateMonitoring(final String title) {
 
         super(title);
         this.series = new TimeSeries("Random Data", Millisecond.class);
@@ -93,7 +93,7 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
      */
     private JFreeChart createChart(final XYDataset dataset) {
         final JFreeChart result = ChartFactory.createTimeSeriesChart(
-            "Monitoring Table for"+lblselectedIp.getText(),
+            "Monitoring Table for" + fr.getSelectedIp,//+lblselectedIp.getText(),
             "Time",
             "Mb",
             dataset,
@@ -180,10 +180,10 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
 		int subsitution2=0;
 		int swap=0;
 		
-		String ip ="192.168.1.35";  //lblselectedIp.getText().trim();
+		String ip =  fr.getSelectedIp;//lblselectedIp.getText().trim();
 
-		String outputIN = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.6",communityName);
-		String outputOUT = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.10",communityName);
+		String outputIN = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.6","public");
+		String outputOUT = walk.main(ip, "1.3.6.1.2.1.31.1.1.1.10","public");
 		 
 		
 		 sumOfInt.add(inputParser(outputIN));
@@ -220,9 +220,9 @@ public class DynamicLineAndTimeSeriesChart extends ApplicationFrame implements A
      *
      * @param args  ignored.
      */
-    public static void main(String args[]) {
+    public static void main() {
 
-        final DynamicLineAndTimeSeriesChart demo = new DynamicLineAndTimeSeriesChart("Dynamic Line And TimeSeries Chart");
+        final PacketRateMonitoring demo = new PacketRateMonitoring("Packet Rate Monitoring");
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);

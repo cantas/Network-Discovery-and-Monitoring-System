@@ -29,6 +29,8 @@ public class WriteXMLFile {
 	static String SWITCH_IMAGE = "data/images/switch.png";
 	static String CLOUD_IMAGE = "data/images/Cloud.png";
 	static String UNKNOWN_IMAGE = "data/images/accessPoint.png";
+	static String ACCESS_POINT = "data/images/accessPoint.png";
+
 	 
 	
 	public static void main() {
@@ -99,8 +101,6 @@ public class WriteXMLFile {
 		}
 		
 		
-		
-		
 		//NODE CREATE
 		for (int i=0; i< ldp.topologyNodeId.size(); i++)
 		{
@@ -123,32 +123,32 @@ public class WriteXMLFile {
 		
 		Element data2 = doc.createElement("data");
 		rootElement.appendChild(data2);
-		
-		
-
-		
-		deviceModel = ldp.deviceModel.get(0).trim();
+	
+		/*deviceModel = ldp.deviceModel.get(0).trim();
 		System.out.println("DEvuce model"+deviceModel);
-		deviceType = sql.loadDevice(deviceModel);
+		deviceType = sql.loadDevice(deviceModel);*/
 		
 		//System.out.println("DEvice Type"+ deviceType);
 		
+		//Test Images
+		
+		deviceType=ldp.topologyNodeId.get(i).toString();
 		if(deviceType==null)
 		{
 			deviceType = UNKNOWN_IMAGE;
 		}
-		else if(deviceType.equalsIgnoreCase("Switch"))
+		else if(deviceType.startsWith("sw"))
 		{
 			deviceType = SWITCH_IMAGE;
 		}
-		else if (deviceType.equalsIgnoreCase("Router"))
+		else if (deviceType.startsWith("rou"))
 		{
 			deviceType = ROUTER_IMAGE;
 			
 		}
-		else if (deviceType.equalsIgnoreCase("unkownDevice"))
+		else if (deviceType.startsWith("ap"))
 		{
-			deviceType = UNKNOWN_IMAGE;
+			deviceType = ACCESS_POINT;
 			
 		}
 		
