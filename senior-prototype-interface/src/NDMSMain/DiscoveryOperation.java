@@ -6,10 +6,18 @@ import java.util.TimerTask;
 
 import TopologyHandler.WriteXMLFile;
 
+<<<<<<< HEAD
 public  class DiscoveryOperation extends TimerTask{
 
+=======
+>>>>>>> FETCH_HEAD
 
-	
+public  class DiscoveryOperation extends TimerTask{
+/*
+ * 	CDP and LLDP operations will be handled from this class
+ * after that the XML file for the topology will be written
+ * 
+ */
 		@Override
 		public void run() {
 			frame1 fr = new frame1();
@@ -91,28 +99,29 @@ public  class DiscoveryOperation extends TimerTask{
 				}
 			}
 
-			for(int i=0; i<ldp.lldpHostName.size();i++)
-			{
-				System.out.println("HOST NAME:    "+ ldp.lldpHostName.get(i));
-			}
-		
-			for(int i=0; i<ldp.lldpNeigName.size();i++)
-			{
-				System.out.println("NEIGH NAME:    "+ ldp.lldpNeigName.get(i));
-			}
-			for(int i=0; i<ldp.lldpNeigInt.size();i++)
-			{
-				System.out.println("NEIGH INT:    "+ ldp.lldpNeigInt.get(i));
-			}
-			for(int i=0; i<ldp.deviceModel.size();i++)
-			{
-				System.out.println("DEVICE MODEL:     "+ ldp.deviceModel.get(i));
-			}
-			for(int i=0; i<ldp.topologyNodeId.size();i++)
-			{
-				System.out.println("CIZIM NODE:    "+ ldp.topologyNodeId.get(i));
-			}
-			
+			//Test for the Analyse of topology
+//			for(int i=0; i<ldp.lldpHostName.size();i++)
+//			{
+//				System.out.println("HOST NAME:    "+ ldp.lldpHostName.get(i));
+//			}
+//		
+//			for(int i=0; i<ldp.lldpNeigName.size();i++)
+//			{
+//				System.out.println("NEIGH NAME:    "+ ldp.lldpNeigName.get(i));
+//			}
+//			for(int i=0; i<ldp.lldpNeigInt.size();i++)
+//			{
+//				System.out.println("NEIGH INT:    "+ ldp.lldpNeigInt.get(i));
+//			}
+//			for(int i=0; i<ldp.deviceModel.size();i++)
+//			{
+//				System.out.println("DEVICE MODEL:     "+ ldp.deviceModel.get(i));
+//			}
+//			for(int i=0; i<ldp.topologyNodeId.size();i++)
+//			{
+//				System.out.println("CIZIM NODE:    "+ ldp.topologyNodeId.get(i));
+//			}
+//			
 			WriteXMLFile.main();
 
 		

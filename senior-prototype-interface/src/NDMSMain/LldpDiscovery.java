@@ -8,19 +8,25 @@ import SNMPHandler.SNMPWalk;
 import TopologyHandler.WriteXMLFile;
 
 public class LldpDiscovery {
+	/*
+	 * LLDP protocol will be invoked from this class
+	 * It will operate for the discovered devices which are in
+	 * main frame model and jlist 
+	 * 
+	 */
 
 	static SNMPWalk t1 = new SNMPWalk();
-	public static String LLDP_OID = "1.0.8802.1.1.2.1.4.1.1";
+	public static String LLDP_OID = "1.0.8802.1.1.2.1.4.1.1"; //LLDP MIB-OID nummber
 	public static String snmpCheck = null; // MODEL
 	public static String devicePid = null; // Product Id
 
-	public static ArrayList<String> topologyNodeId = new ArrayList<String>();
-	public static ArrayList<String> lldpHostName = new ArrayList<String>();
-	public static ArrayList<String> lldpHostInt = new ArrayList<String>();
-	public static ArrayList<String> lldpNeigName = new ArrayList<String>();
-	public static ArrayList<String> lldpNeigInt = new ArrayList<String>();
+	public static ArrayList<String> topologyNodeId = new ArrayList<String>(); //node
+	public static ArrayList<String> lldpHostName = new ArrayList<String>(); //Hostname of device
+	public static ArrayList<String> lldpHostInt = new ArrayList<String>();// connected port of device
+	public static ArrayList<String> lldpNeigName = new ArrayList<String>(); // neighbour device hostname
+	public static ArrayList<String> lldpNeigInt = new ArrayList<String>(); // connected port of neighbour device
 	public static ArrayList<String> lldpNeigMac = new ArrayList<String>();
-	public static ArrayList<String> deviceModel = new ArrayList<String>();
+	public static ArrayList<String> deviceModel = new ArrayList<String>(); // device model of host 
 
 	public static void main(String target) {
 
@@ -33,6 +39,10 @@ public class LldpDiscovery {
 		String satir[] = null;
 		String esit[] = null;
 		String hostInt = null;
+		/*
+		 * Main for loop for filling the ArrayList's which are
+		 * created for the node discovery analysis
+		 */
 		for (int i = 0; i < out.ipler.size(); i++) {
 			try {
 				String reachable = fun.ScanOpeation(out.ipler.get(i)
@@ -128,46 +138,48 @@ public class LldpDiscovery {
 				e.printStackTrace();
 			}//
 		}
-
-		System.out.println("---HostName---");
-		for (int i = 0; i < lldpHostName.size(); i++) {
-			System.out.println(lldpHostName.get(i).toString());
-		}
-		System.out.println("---HostInt---");
-		for (int i = 0; i < lldpHostInt.size(); i++) {
-
-			System.out.println(lldpHostInt.get(i).toString());
-
-		}
-		System.out.println("---NeighInt---");
-		for (int i = 0; i < lldpHostInt.size(); i++) {
-
-			System.out.println(lldpNeigInt.get(i).toString());
-
-		}
-		System.out.println("---NeighName---");
-		for (int i = 0; i < lldpNeigName.size(); i++) {
-			System.out.println(lldpNeigName.get(i).toString());
-		}
-		System.out.println("---NeighMac---");
-		for (int i = 0; i < lldpHostInt.size(); i++) {
-			System.out.println(lldpNeigMac.get(i).toString());
-		}
-		System.out.println("---NodeId---");
-		for (int i = 0; i < topologyNodeId.size(); i++) {
-			System.out.println(topologyNodeId.get(i).toString());
-		}
-
-		for (int i = 0; i < lldpNeigName.size(); i++) {
-			if (!topologyNodeId.contains(lldpNeigName.get(i).trim())) {
-				topologyNodeId.add(lldpNeigName.get(i));
-			}
-		}
-
-		System.out.println("===LLDPNODE ID");
-		for (int i = 0; i < topologyNodeId.size(); i++) {
-			System.out.println(topologyNodeId.get(i).toString());
-		}
+		
+		// Test for the ArrayList operations
+//
+//		System.out.println("---HostName---");
+//		for (int i = 0; i < lldpHostName.size(); i++) {
+//			System.out.println(lldpHostName.get(i).toString());
+//		}
+//		System.out.println("---HostInt---");
+//		for (int i = 0; i < lldpHostInt.size(); i++) {
+//
+//			System.out.println(lldpHostInt.get(i).toString());
+//
+//		}
+//		System.out.println("---NeighInt---");
+//		for (int i = 0; i < lldpHostInt.size(); i++) {
+//
+//			System.out.println(lldpNeigInt.get(i).toString());
+//
+//		}
+//		System.out.println("---NeighName---");
+//		for (int i = 0; i < lldpNeigName.size(); i++) {
+//			System.out.println(lldpNeigName.get(i).toString());
+//		}
+//		System.out.println("---NeighMac---");
+//		for (int i = 0; i < lldpHostInt.size(); i++) {
+//			System.out.println(lldpNeigMac.get(i).toString());
+//		}
+//		System.out.println("---NodeId---");
+//		for (int i = 0; i < topologyNodeId.size(); i++) {
+//			System.out.println(topologyNodeId.get(i).toString());
+//		}
+//
+//		for (int i = 0; i < lldpNeigName.size(); i++) {
+//			if (!topologyNodeId.contains(lldpNeigName.get(i).trim())) {
+//				topologyNodeId.add(lldpNeigName.get(i));
+//			}
+//		}
+//
+//		System.out.println("===LLDPNODE ID");
+//		for (int i = 0; i < topologyNodeId.size(); i++) {
+//			System.out.println(topologyNodeId.get(i).toString());
+//		}
 
 		// createCSV();
 

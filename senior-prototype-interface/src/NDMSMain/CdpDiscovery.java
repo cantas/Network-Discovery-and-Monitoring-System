@@ -9,18 +9,26 @@ import SNMPHandler.SNMPManager;
 import SNMPHandler.SNMPWalk;
 
 public class CdpDiscovery {
+	
+	/*
+	 * This class will start the Cisco CDP protochol 
+	 * it takes ip addresses from HOSTS panel 
+	 * and starts the cdp operation for all discovered
+	 * nodes
+	 * 
+	 */
 
-	public static String CDP_OID = "1.3.6.1.4.1.9.9.23";
+	public static String CDP_OID = "1.3.6.1.4.1.9.9.23"; //CDP mib- oid number
 	public static String cdpSnmpCheck = null; // Host Name
 	public static String cdpDevicePid = null; // Product Id
 	public static String cdpTemp = null; // Product Id
 
-	public static ArrayList<String> cdpTopologyNodeId = new ArrayList<String>();
-	public static ArrayList<String> cdpHostName = new ArrayList<String>();
-	public static ArrayList<String> cdpHostInt = new ArrayList<String>();
-	public static ArrayList<String> cdpNeigName = new ArrayList<String>();
-	public static ArrayList<String> cdpNeigInt = new ArrayList<String>();
-	public static ArrayList<String> cdpDeviceModel = new ArrayList<String>();
+	public static ArrayList<String> cdpTopologyNodeId = new ArrayList<String>(); // nodes
+	public static ArrayList<String> cdpHostName = new ArrayList<String>(); // hostname of device
+	public static ArrayList<String> cdpHostInt = new ArrayList<String>(); // connected port of device
+	public static ArrayList<String> cdpNeigName = new ArrayList<String>(); // Neigbour host name
+	public static ArrayList<String> cdpNeigInt = new ArrayList<String>(); // neighbour connected port
+	public static ArrayList<String> cdpDeviceModel = new ArrayList<String>(); // device model
 
 	public static void main(String target) {
 		// TODO Auto-generated method stub
@@ -173,35 +181,35 @@ public class CdpDiscovery {
 
 		// Test to show output of arrayLists - cdp
 
-		System.out.println("---HostName---");
-		for (int i = 0; i < cdpHostName.size(); i++) {
-			System.out.println(cdpHostName.get(i).toString());
-		}
-		System.out.println("---HostInt---");
-		for (int i = 0; i < cdpHostInt.size(); i++) {
-
-			System.out.println(cdpHostInt.get(i).toString());
-
-		}
-		System.out.println("---NeighInt---");
-		for (int i = 0; i < cdpHostInt.size(); i++) {
-
-			System.out.println(cdpNeigInt.get(i).toString());
-
-		}
-		System.out.println("---NeighName---");
-		for (int i = 0; i < cdpNeigName.size(); i++) {
-			System.out.println(cdpNeigName.get(i).toString());
-		}
-
-		System.out.println("---NodeId---");
-		for (int i = 0; i < cdpTopologyNodeId.size(); i++) {
-			System.out.println(cdpTopologyNodeId.get(i).toString());
-		}
-		System.out.println("---DEVICE--");
-		for (int i = 0; i < cdpDeviceModel.size(); i++) {
-			System.out.println(cdpDeviceModel.get(i).toString());
-		}
+//		System.out.println("---HostName---");
+//		for (int i = 0; i < cdpHostName.size(); i++) {
+//			System.out.println(cdpHostName.get(i).toString());
+//		}
+//		System.out.println("---HostInt---");
+//		for (int i = 0; i < cdpHostInt.size(); i++) {
+//
+//			System.out.println(cdpHostInt.get(i).toString());
+//
+//		}
+//		System.out.println("---NeighInt---");
+//		for (int i = 0; i < cdpHostInt.size(); i++) {
+//
+//			System.out.println(cdpNeigInt.get(i).toString());
+//
+//		}
+//		System.out.println("---NeighName---");
+//		for (int i = 0; i < cdpNeigName.size(); i++) {
+//			System.out.println(cdpNeigName.get(i).toString());
+//		}
+//
+//		System.out.println("---NodeId---");
+//		for (int i = 0; i < cdpTopologyNodeId.size(); i++) {
+//			System.out.println(cdpTopologyNodeId.get(i).toString());
+//		}
+//		System.out.println("---DEVICE--");
+//		for (int i = 0; i < cdpDeviceModel.size(); i++) {
+//			System.out.println(cdpDeviceModel.get(i).toString());
+//		}
 
 	}
 
