@@ -1,23 +1,17 @@
+/*
+ * 	CDP and LLDP operations will be handled from this class
+ * after that the XML file for the topology will be written
+ * 
+ */
 package NDMSMain;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.TimerTask;
 
 import TopologyHandler.WriteXMLFile;
 
-<<<<<<< HEAD
 public  class DiscoveryOperation extends TimerTask{
 
-=======
->>>>>>> FETCH_HEAD
-
-public  class DiscoveryOperation extends TimerTask{
-/*
- * 	CDP and LLDP operations will be handled from this class
- * after that the XML file for the topology will be written
- * 
- */
 		@Override
 		public void run() {
 			frame1 fr = new frame1();
