@@ -13,7 +13,7 @@ Network Configuration
 It is just an idea. After we compelete Discovering and Monitoring, We will introduce NDMS v2 with remote configuration option. Network admin can configure devices with user-interface easily
 
 
-http://team3.bilkent.edu.tr/
+
 
 Authors
 ========
@@ -22,4 +22,4 @@ Mehmet Can TAS - Project Manager - Java Developer
 
 Arif VURANOK - Network Specialist
 
-M.Murat BAHADIRLI - UI Developer
+
